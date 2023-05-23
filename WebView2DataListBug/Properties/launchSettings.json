@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WebView2DataListBug (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WebView2DataListBug (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
