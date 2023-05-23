@@ -26,11 +26,18 @@ namespace WebView2DataListBug
         public MainWindow()
         {
             this.InitializeComponent();
-        }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            myButton.Content = "Clicked";
+            // Load HTML content from index.html file
+            using var indexHtmlStream = typeof(MainWindow).Assembly.GetManifestResourceStream("WebView2DataListBug.index.html");
+            using var indexHtmlReader = new StreamReader(indexHtmlStream);
+            var indexHtmlContent = indexHtmlReader.ReadToEnd();
+
+            // Load the HTML into the WebView2 control
+            wv2.CoreWebView2Initialized += (_, __) =>
+            {
+                wv2.NavigateToString(indexHtmlContent);
+            };
+            _ = wv2.EnsureCoreWebView2Async();
         }
     }
 }
